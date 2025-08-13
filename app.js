@@ -52,6 +52,19 @@ const jstInputISO8601ToUtcInputISO8601 = () => {
   }
 };
 
+// UTC(ISO8601)からJST(ISO8601)へ変換ボタンをクリックした時
+const utcInputISO8601ToJstOutputISO8601 = () => {
+  const utc8601Input = document.querySelector('#utc-input-iso8601');
+  const jst8601Output = document.querySelector('#jst-output-iso8601');
+
+  try {
+    const d = new Date(utc8601Input.value);
+    jst8601Output.value = getJSTISO8601(d);
+  } catch (e) {
+    alert('ISO8601のUTCの入力に誤りがあります');
+  }
+};
+
 // ページ読み込み完了時
 document.addEventListener("DOMContentLoaded", (event) => {
   // 入力初期化
@@ -59,4 +72,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
   // JST(ISO8601)からUTC(ISO8601)へ変換ボタンをクリックした時
   document.querySelector('#btn-jst-2-utc-iso8601').addEventListener('click', jstInputISO8601ToUtcInputISO8601);
+
+  // UTC(ISO8601)からJST(ISO8601)へ変換ボタンをクリックした時
+  document.querySelector('#btn-utc-2-jst-iso8601').addEventListener('click', utcInputISO8601ToJstOutputISO8601);
 });
